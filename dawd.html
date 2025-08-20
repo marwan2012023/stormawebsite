@@ -16,10 +16,9 @@
         .navbar {
             background-color: #333;
             overflow: hidden;
-            text-align: center;
             padding: 14px 16px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* توزيع العناصر على الجانبين */
             align-items: center;
         }
         .navbar a {
@@ -27,7 +26,6 @@
             padding: 14px 20px;
             text-decoration: none;
             font-size: 17px;
-            display: inline-block;
         }
         .navbar a:hover {
             background-color: #ddd;
@@ -91,35 +89,30 @@
         .feature-item h3 {
             color: #007bff;
         }
-        .language-switcher {
-            margin-left: 20px;
-            text-align: center;
-        }
-        .language-switcher button {
+        .account-info {
             background-color: #555;
             color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            margin: 0 5px;
+            padding: 8px 15px;
             border-radius: 5px;
-        }
-        .language-switcher button.active {
-            background-color: #007bff;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-        <div class="language-switcher">
-            <button onclick="setLanguage('en')">English</button>
-            <button onclick="setLanguage('fr')">Français</button>
-            <button onclick="setLanguage('ar')">العربية</button>
+        <div class="left-section">
+            <a href="#home" data-lang-key="home">Home</a>
+            <a href="#skins" data-lang-key="skins">Skins</a>
         </div>
-        <a href="#home" data-lang-key="home">Home</a>
-        <a href="#skins" data-lang-key="skins">Skins</a>
-        <a href="#login" data-lang-key="login">Login</a>
+        <div class="right-section">
+            <span id="account-name" class="account-info"></span>
+            <div class="language-switcher" style="display: inline-block;">
+                <button onclick="setLanguage('en')">English</button>
+                <button onclick="setLanguage('fr')">Français</button>
+                <button onclick="setLanguage('ar')">العربية</button>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -184,7 +177,7 @@
                 feature6Text: 'You can change settings and customize your gameplay experience.',
                 home: 'Home',
                 skins: 'Skins',
-                login: 'Login'
+                accountInfo: 'Account Info' // إضافة ترجمة جديدة
             },
             fr: {
                 mainTitle: 'StormaX Launcher',
@@ -206,7 +199,7 @@
                 feature6Text: 'Vous pouvez modifier les paramètres et personnaliser votre expérience de jeu.',
                 home: 'Accueil',
                 skins: 'Skins',
-                login: 'Connexion'
+                accountInfo: 'Infos du Compte'
             },
             ar: {
                 mainTitle: 'StormaX Launcher',
@@ -228,7 +221,7 @@
                 feature6Text: 'يمكنك تغيير الإعدادات وتخصيص تجربة اللعب.',
                 home: 'الرئيسية',
                 skins: 'السكنات',
-                login: 'تسجيل الدخول'
+                accountInfo: 'معلومات الحساب' // إضافة ترجمة جديدة
             }
         };
 
@@ -256,13 +249,35 @@
                 btn.classList.remove('active');
             });
             document.querySelector(`.language-switcher button[onclick="setLanguage('${lang}')"]`).classList.add('active');
+
+            // Update account info text based on language
+            displayAccountInfo();
         }
 
-        // Set default language to English on load
+        function displayAccountInfo() {
+            const accountNameElement = document.getElementById('account-name');
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            
+            // تحديد النص بناءً على وجود مستخدم مسجل واللغة الحالية
+            const currentLang = document.documentElement.lang;
+            if (loggedInUser) {
+                accountNameElement.textContent = loggedInUser;
+            } else {
+                // استخدام الترجمة المناسبة لـ "Not Logged In"
+                if (currentLang === 'ar') {
+                    accountNameElement.textContent = 'غير مسجل الدخول';
+                } else if (currentLang === 'fr') {
+                    accountNameElement.textContent = 'Non connecté';
+                } else {
+                    accountNameElement.textContent = 'Not Logged In';
+                }
+            }
+        }
+
+        // Set default language and display account info on load
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage('en');
         });
     </script>
-
 </body>
 </html>
