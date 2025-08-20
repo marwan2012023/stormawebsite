@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StormaX Launcher - The Best Minecraft Launcher</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            direction: ltr; /* Default direction for English */
+            text-align: left;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            text-align: center;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar a {
+            color: #f2f2f2;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 17px;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            line-height: 150px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .download-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #28a745;
+            color: #fff;
+            text-align: center;
+            font-size: 1.2em;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .download-button:hover {
+            background-color: #218838;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .feature-item {
+            flex-basis: 30%;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .feature-item h3 {
+            color: #007bff;
+        }
+        .language-switcher {
+            margin-left: 20px;
+            text-align: center;
+        }
+        .language-switcher button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .language-switcher button.active {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="language-switcher">
+            <button onclick="setLanguage('en')">English</button>
+            <button onclick="setLanguage('fr')">Français</button>
+            <button onclick="setLanguage('ar')">العربية</button>
+        </div>
+        <a href="#home" data-lang-key="home">Home</a>
+        <a href="#skins" data-lang-key="skins">Skins</a>
+        <a href="#login" data-lang-key="login">Login</a>
+    </div>
+
+    <div class="container">
+        <div class="logo">S</div>
+        <h1 data-lang-key="mainTitle">StormaX Launcher</h1>
+        <h2 data-lang-key="subTitle">The best free Minecraft launcher</h2>
+
+        <p style="text-align: center;" data-lang-key="introText">StormaX Launcher is the best free and secure launcher for Minecraft. It provides you with the latest versions, supports all add-ons, and allows you to easily modify the game.</p>
+
+        <a href="#" class="download-button" data-lang-key="downloadButton">Free Download</a>
+
+        <hr>
+
+        <h2 data-lang-key="whyChooseTitle">Why Choose StormaX Launcher?</h2>
+        <div class="features">
+            <div class="feature-item">
+                <h3 data-lang-key="feature1Title">Completely Free</h3>
+                <p data-lang-key="feature1Text">No hidden fees, enjoy all features for free.</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-lang-key="feature2Title">Easy to Use</h3>
+                <p data-lang-key="feature2Text">A simple and easy-to-use interface, even for beginners.</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-lang-key="feature3Title">Latest Versions</h3>
+                <p data-lang-key="feature3Text">Always updated to include the latest Minecraft versions.</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-lang-key="feature4Title">Mod Support</h3>
+                <p data-lang-key="feature4Text">Compatible with Forge, Fabric, and all mods.</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-lang-key="feature5Title">Totally Safe</h3>
+                <p data-lang-key="feature5Text">A secure launcher with no viruses or malware.</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-lang-key="feature6Title">Full Customization</h3>
+                <p data-lang-key="feature6Text">You can change settings and customize your gameplay experience.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                mainTitle: 'StormaX Launcher',
+                subTitle: 'The best free Minecraft launcher',
+                introText: 'StormaX Launcher is the best free and secure launcher for Minecraft. It provides you with the latest versions, supports all add-ons, and allows you to easily modify the game.',
+                downloadButton: 'Free Download',
+                whyChooseTitle: 'Why Choose StormaX Launcher?',
+                feature1Title: 'Completely Free',
+                feature1Text: 'No hidden fees, enjoy all features for free.',
+                feature2Title: 'Easy to Use',
+                feature2Text: 'A simple and easy-to-use interface, even for beginners.',
+                feature3Title: 'Latest Versions',
+                feature3Text: 'Always updated to include the latest Minecraft versions.',
+                feature4Title: 'Mod Support',
+                feature4Text: 'Compatible with Forge, Fabric, and all mods.',
+                feature5Title: 'Totally Safe',
+                feature5Text: 'A secure launcher with no viruses or malware.',
+                feature6Title: 'Full Customization',
+                feature6Text: 'You can change settings and customize your gameplay experience.',
+                home: 'Home',
+                skins: 'Skins',
+                login: 'Login'
+            },
+            fr: {
+                mainTitle: 'StormaX Launcher',
+                subTitle: 'Le meilleur lanceur Minecraft gratuit',
+                introText: 'StormaX Launcher est le meilleur lanceur gratuit et sécurisé pour Minecraft. Il vous fournit les dernières versions, prend en charge tous les modules complémentaires et vous permet de modifier le jeu facilement.',
+                downloadButton: 'Téléchargement Gratuit',
+                whyChooseTitle: 'Pourquoi choisir StormaX Launcher ?',
+                feature1Title: 'Totalement Gratuit',
+                feature1Text: 'Pas de frais cachés, profitez de toutes les fonctionnalités gratuitement.',
+                feature2Title: 'Facile à Utiliser',
+                feature2Text: 'Une interface simple et facile à utiliser, même pour les débutants.',
+                feature3Title: 'Dernières Versions',
+                feature3Text: 'Toujours mis à jour pour inclure les dernières versions de Minecraft.',
+                feature4Title: 'Support des Mods',
+                feature4Text: 'Compatible avec Forge, Fabric et tous les mods.',
+                feature5Title: 'Totalement Sûr',
+                feature5Text: 'Un lanceur sécurisé sans virus ni logiciels malveillants.',
+                feature6Title: 'Personnalisation Complète',
+                feature6Text: 'Vous pouvez modifier les paramètres et personnaliser votre expérience de jeu.',
+                home: 'Accueil',
+                skins: 'Skins',
+                login: 'Connexion'
+            },
+            ar: {
+                mainTitle: 'StormaX Launcher',
+                subTitle: 'أفضل لانشر مجاني للعبة ماينكرافت',
+                introText: 'StormaX Launcher هو أفضل لانشر مجاني وآمن للعبة ماينكرافت. يوفر لك أحدث الإصدارات، ويدعم جميع الإضافات، ويسمح لك بتعديل اللعبة بسهولة.',
+                downloadButton: 'تحميل مجاني',
+                whyChooseTitle: 'لماذا تختار StormaX Launcher؟',
+                feature1Title: 'مجاني بالكامل',
+                feature1Text: 'لا توجد رسوم خفية، استمتع بجميع الميزات مجانًا.',
+                feature2Title: 'سهولة الاستخدام',
+                feature2Text: 'واجهة بسيطة وسهلة الاستخدام، حتى للمبتدئين.',
+                feature3Title: 'أحدث الإصدارات',
+                feature3Text: 'دائمًا ما يتم تحديثه ليشمل أحدث إصدارات ماينكرافت.',
+                feature4Title: 'دعم التعديلات',
+                feature4Text: 'متوافق مع Forge، Fabric، وجميع المودات.',
+                feature5Title: 'أمان تام',
+                feature5Text: 'لانشر آمن لا يحتوي على أي فيروسات أو برامج ضارة.',
+                feature6Title: 'تخصيص كامل',
+                feature6Text: 'يمكنك تغيير الإعدادات وتخصيص تجربة اللعب.',
+                home: 'الرئيسية',
+                skins: 'السكنات',
+                login: 'تسجيل الدخول'
+            }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            const body = document.body;
+            if (lang === 'ar') {
+                body.style.direction = 'rtl';
+                body.style.textAlign = 'right';
+            } else {
+                body.style.direction = 'ltr';
+                body.style.textAlign = 'left';
+            }
+            
+            // Update all elements with data-lang-key attribute
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update button styles
+            document.querySelectorAll('.language-switcher button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.language-switcher button[onclick="setLanguage('${lang}')"]`).classList.add('active');
+        }
+
+        // Set default language to English on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('en');
+        });
+    </script>
+
+</body>
+</html>
