@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - StormaX Launcher</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* Right-to-left for Arabic */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            text-align: center;
+            padding: 14px 16px;
+        }
+        .navbar a {
+            color: #f2f2f2;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 17px;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            color: white;
+        }
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+        .link {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        #message {
+            color: red;
+            margin-top: 10px;
+        }
+        .create-account-link {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="https://marwan2012023.github.io/stormawebsite/">الرئيسية</a>
+        <a href="#">السكنات</a>
+        <a href="#">من نحن</a>
+        <a href="#">تواصل معنا</a>
+    </div>
+
+    <div class="main-content">
+        <div class="login-container">
+            <h2>تسجيل الدخول</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <p id="message"></p>
+                <button type="submit" class="login-button">تسجيل الدخول</button>
+                <a href="#" class="link">نسيت كلمة المرور؟</a>
+                <a href="#" id="create-account-link" class="link">إنشاء حساب جديد</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // هذا مجرد مثال. في الواقع، ستحتاج إلى خادم وقاعدة بيانات.
+        // قمنا بإنشاء مصفوفة (Array) بسيطة لتخزين الحسابات المزيفة.
+        // يمكن تخزين هذه المصفوفة في localStorage لجعلها دائمة
+        let users = JSON.parse(localStorage.getItem('registeredUsers')) || [
+            { username: "testuser", password: "password123" },
+            { username: "marwan", password: "123" } // حساب افتراضي للاختبار
+        ];
+
+        const loginForm = document.getElementById('login-form');
+        const messageDisplay = document.getElementById('message');
+        const createAccountLink = document.getElementById('create-account-link');
+
+        // عند محاولة تسجيل الدخول
+        loginForm.addEventListener('submit', function(event) {
+            // منع الصفحة من إعادة التحميل
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // البحث عن المستخدم في المصفوفة
+            const user = users.find(u => u.username === username);
+
+            if (user) {
+                // إذا كان المستخدم موجود، تحقق من كلمة المرور
+                if (user.password === password) {
+                    messageDisplay.style.color = 'green';
+                    messageDisplay.textContent = 'تم تسجيل الدخول بنجاح! جاري التوجيه...';
+                    // **هنا نحفظ اسم المستخدم في localStorage**
+                    localStorage.setItem('loggedInUser', username); 
+                    // **نغير الرابط هنا ليتوافق مع طلبك**
+                    window.location.href = 'https://marwan2012023.github.io/stormawebsite/dawd.html'; 
+                } else {
+                    messageDisplay.style.color = 'red';
+                    messageDisplay.textContent = 'كلمة المرور غير صحيحة.';
+                }
+            } else {
+                // إذا لم يتم العثور على المستخدم
+                messageDisplay.style.color = 'red';
+                messageDisplay.innerHTML = 'اسم المستخدم غير موجود. <span class="create-account-link" onclick="promptCreateAccount()">هل تريد إنشاء حساب؟</span>';
+            }
+        });
+
+        // وظيفة لإنشاء حساب جديد (مثال بسيط جداً)
+        function promptCreateAccount() {
+            const newUsername = prompt("أدخل اسم مستخدم جديد:");
+            const newPassword = prompt("أدخل كلمة مرور جديدة:");
+            if (newUsername && newPassword) {
+                // تحقق مما إذا كان اسم المستخدم موجودًا بالفعل
+                if (users.some(u => u.username === newUsername)) {
+                    messageDisplay.style.color = 'red';
+                    messageDisplay.textContent = 'اسم المستخدم هذا موجود بالفعل. يرجى اختيار اسم آخر.';
+                    return;
+                }
+                // إضافة المستخدم الجديد إلى المصفوفة
+                users.push({ username: newUsername, password: newPassword });
+                // **حفظ المصفوفة المحدثة في localStorage**
+                localStorage.setItem('registeredUsers', JSON.stringify(users)); 
+                messageDisplay.style.color = 'green';
+                messageDisplay.textContent = 'تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.';
+            } else {
+                messageDisplay.style.color = 'red';
+                messageDisplay.textContent = 'فشل إنشاء الحساب. يرجى إدخال اسم المستخدم وكلمة المرور.';
+            }
+        }
+
+        // عند النقر على رابط "إنشاء حساب جديد"
+        createAccountLink.addEventListener('click', function(event) {
+            event.preventDefault(); // منع الرابط من العمل
+            promptCreateAccount();
+        });
+
+    </script>
+</body>
+</html>
